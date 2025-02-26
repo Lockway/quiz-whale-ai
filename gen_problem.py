@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 # Initialize
 load_dotenv()  # Load environment variables from .env file
 openai.api_key = os.getenv("OPENAI_API_KEY")
-client = openai.OpenAI(api_key=openai.api_key)
+client = openai.OpenAI()
 
 # Load JSON data
 def load_json(json_path):
@@ -42,7 +42,7 @@ def generate_problem(data, problem_type, key_point, problem_id=0):
         model="gpt-4",
         messages=[{"role": "user", "content": prompt}]
     )
-    
+
     response_text = response.choices[0].message.content
     # print(f"Raw GPT Response for problem ID {problem_id}:\n{response_text}")
 
