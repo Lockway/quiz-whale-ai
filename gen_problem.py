@@ -57,7 +57,7 @@ def generate_problem(data, problem_type, key_point, problem_id=0):
 
 # Example usage
 generated_problems = []
-pages = load_json("sample.json")
+pages = load_json("json/sample.json")
 
 for i, page in enumerate(pages):
     generated_problem = generate_problem(page, "multiple_choice", "Not given", problem_id=i + 1)
