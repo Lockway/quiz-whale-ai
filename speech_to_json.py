@@ -22,14 +22,14 @@ def transcribe_audio(file_path, page_number):
     }
 
 # Main
-audio_files = ["audio1.mp3"]  # List of audio files
+audio_files = ["mp3/audio1.mp3"]  # List of audio files
 json_data = []
 
 for i, file_path in enumerate(audio_files, start=1):
     json_data.append(transcribe_audio(file_path, page_number=i))
 
 # Save to JSON file
-with open("transcriptions.json", "w", encoding="utf-8") as json_file:
+with open("json/transcriptions.json", "w", encoding="utf-8") as json_file:
     json.dump(json_data, json_file, ensure_ascii=False, indent=4)
 
 print("Transcriptions saved to transcriptions.json")

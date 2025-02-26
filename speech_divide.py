@@ -14,5 +14,5 @@ def split_audio(file_path, chunk_length_ms=300000):  # 300,000ms = 5 minutes
     return output_files
 
 # Example usage
-split_files = split_audio("large_audio.mp3")
+split_files = split_audio("mp3/large_audio.mp3")
 print("Chunks created:", split_files)

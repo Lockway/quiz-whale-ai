@@ -67,7 +67,7 @@ for i, page in enumerate(pages):
         exit()
 
 # Save the generated problem to a JSON file
-with open("generated_problems.json", "w", encoding="utf-8") as f:
+with open("json/generated_problems.json", "w", encoding="utf-8") as f:
     json.dump(generated_problems, f, ensure_ascii=False, indent=4)
 
 print("Generated problems saved to generated_problems.json")
