@@ -35,11 +35,14 @@ def transcribe_audio(file_path):
     return pages
 
 # Main
-audio_file = "mp3/audio1.mp3"
-json_data = transcribe_audio(audio_file)
+if __name__ == "__main__":
+    '''
+    audio_file = "mp3/audio1.mp3"
+    json_data = transcribe_audio(audio_file)
 
-# Save to JSON file
-with open("json/transcriptions2.json", "w", encoding="utf-8") as json_file:
-    json.dump(json_data, json_file, ensure_ascii=False, indent=4)
+    # Save to JSON file
+    with open("json/transcriptions2.json", "w", encoding="utf-8") as f:
+        json.dump(json_data, f, ensure_ascii=False, indent=4)
 
-print("Transcriptions saved to transcriptions.json")
+    print("Transcriptions saved to transcriptions.json")
+    '''
