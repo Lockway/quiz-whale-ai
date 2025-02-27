@@ -120,10 +120,9 @@ if __name__ == "__main__":
     pdf_path = "/pdf/transformer.pdf"  # 분석할 PDF 파일 경로
     start_page = 1
     end_page = 3
-    result = extract_pdf_content(pdf_path, start_page, end_page)
+    json_data = extract_pdf_content(pdf_path, start_page, end_page)
     json_output_path = "json/temp.json"
     with open(json_output_path, "w", encoding="utf-8") as f:
-        json.dump(result, f, indent=2, ensure_ascii=False)
+        json.dump(json_data, f, indent=2, ensure_ascii=False)
     print("완료")
     '''
-    
