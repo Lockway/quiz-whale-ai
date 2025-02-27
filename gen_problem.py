@@ -1,12 +1,6 @@
 import os
-import openai
 import json
-from dotenv import load_dotenv
-
-# Initialize
-load_dotenv()  # Load environment variables from .env file
-openai.api_key = os.getenv("OPENAI_API_KEY")
-client = openai.OpenAI()
+from openai_client import client
 
 # Load JSON data
 def load_json(json_path):
@@ -18,7 +12,7 @@ def generate_problem(data, problem_type, key_point, problem_id=0):
     page = data["page_number"]
     content = " ".join(data["content"])  # Merge content list into a single string
 
-    if problem_type == "multiple_choice":
+    if problem_type == "choice":
         prompt = (
             f"Generate a multiple-choice question with 5 choices based on the following content and key points:\n\n"
             f"Content: {content}\n"
@@ -28,13 +22,13 @@ def generate_problem(data, problem_type, key_point, problem_id=0):
             f'"choices": {{"A": "<choice 1>", "B": "<choice 2>", "C": "<choice 3>", "D": "<choice 4>", "E": "<choice 5>"}}, '
             f'"answer": "<correct choice (A/B/C/D/E)>"}}, without explanation.'
         )
-    else:  # O/X problem
+    else:  # subject
         prompt = (
-            f"Generate a True/False (O/X) question based on the following content and key points:\n\n"
+            f"Generate \"Fill in the blank\" question based on the following content and key points:\n\n"
             f"Content: {content}\n"
             f"Key points: {key_point}\n\n"
             f"Return the problem in this JSON format:\n"
-            f'{{"id": {problem_id}, "title": "{key_point}", "problem": "<statement_text> (O/X)", "answer": "<O/X>"}}, '
+            f'{{"id": {problem_id}, "title": "{key_point}", "problem": "<statement_text>", "answer": "<A single word>"}}, '
             f'without explanation.'
         )
 
@@ -60,7 +54,7 @@ generated_problems = []
 pages = load_json("json/sample.json")
 
 for i, page in enumerate(pages):
-    generated_problem = generate_problem(page, "multiple_choice", "Not given", problem_id=i + 1)
+    generated_problem = generate_problem(page, "choice", "Not given", problem_id=i + 1)
     if generated_problem:
         generated_problems.append(generated_problem)
     else:

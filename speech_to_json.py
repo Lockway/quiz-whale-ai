@@ -1,12 +1,7 @@
 import os
 import re
 import json
-from openai import OpenAI
-from dotenv import load_dotenv
-
-# Read API key from environment variable
-load_dotenv()
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+from openai_client import client
 
 # Split
 def split_into_sentences(text):
